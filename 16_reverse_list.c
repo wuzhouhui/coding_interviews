@@ -16,6 +16,16 @@ struct listnode *reverse_list(struct listnode *head)
 	return(newhead);
 }
 
+struct listnode *reverse_list2(struct listnode *head)
+{
+	if (!head || !head->next)
+		return(head);
+	struct listnode *newhead = reverse_list2(head->next);
+	head->next->next = head;
+	head->next = 0;
+	return(newhead);
+}
+
 int main(void)
 {
 }
