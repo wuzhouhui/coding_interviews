@@ -28,6 +28,23 @@ struct listnode *mergelist(struct listnode *head1, struct listnode *head2)
 	return(merged);
 }
 
+struct listnode *mergelist2(struct listnode *head1, struct listnode *head2)
+{
+	if (!head1)
+		return(head2);
+	if (!head2)
+		return(head1);
+	struct listnode *merged;
+	if (head1->val < head2->val) {
+		merged = head1;
+		merged->next = mergelist2(head1->next, head2);
+	} else {
+		merged = head2;
+		merged->next = mergelist2(head2->next, head1);
+	}
+	return(merged);
+}
+
 int main(void)
 {
 }
