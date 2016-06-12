@@ -35,3 +35,36 @@ int main(int argc, char *argv[])
 	perm(argv[1]);
 	return(0);
 }
+
+/*
+ * 扩展题
+ */
+#include <string.h>
+#include <stdio.h>
+
+static char buf[32];
+static int p;
+
+static void do_comb(const char *s, int m, int n)
+{
+	if (n <= 0) {
+		printf("%s\n", buf);
+		return;
+	}
+	buf[p++] = *s++;
+	do_comb(s, m - 1, n - 1);
+	buf[--p] = 0;
+	do_comb(s, m, n - 1);
+}
+
+static void combination(const char *s)
+{
+	int l = strlen(s);
+	do_comb(s, l, l);
+}
+
+int main(int argc, char *argv[])
+{
+	combination(argv[1]);
+	return(0);
+}
