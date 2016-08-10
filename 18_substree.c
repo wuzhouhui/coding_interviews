@@ -24,9 +24,9 @@ int hassubtree(const struct treenode *root1, const struct treenode *root2)
 	if (root1->val == root2->val)
 		r = do_has(root1, root2);
 	if (!r)
-		r = do_has(root1->left, root2);
+		r = hassubtree(root1->left, root2);
 	if (!r)
-		r = do_has(root1->right, root2);
+		r = hassubtree(root1->right, root2);
 	return(r);
 }
 
